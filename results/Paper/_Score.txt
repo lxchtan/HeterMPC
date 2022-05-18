@@ -1,0 +1,15 @@
+results/Paper/HeterBART.txt
+Bleu_4: 1.485
+Bleu_3: 2.419
+Bleu_2: 4.796
+Bleu_1: 12.264
+ROUGE_L: 11.201
+METEOR: 4.937
+
+results/Paper/HeterBERT.txt
+Bleu_4: 1.405
+Bleu_3: 2.252
+Bleu_2: 4.551
+Bleu_1: 12.610
+ROUGE_L: 11.196
+METEOR: 4.792

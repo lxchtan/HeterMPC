@@ -1,0 +1,21 @@
+{
+  "name": "basic_config",
+  "dataloader": "heterbart",
+  "dataloader_class": "BaseDataset",
+  "helper": "heterbart",
+  "model": "heterbart",
+  "model_class": "TXHGenerationModel",
+  "dataroot": "data/all_attribute",
+  "dataset_cache": "data/all_attribute_cache",
+  "model_name_or_path": "facebook/bart-base",
+  "history_max_utterances": 1000000,
+  "utterance_max_tokens": 52,
+
+  "gnn_layer_start": 3,
+  "num_gat_layers": 1,
+  "num_gat_heads": 6,
+
+  "optimizer": "AdamW",
+  "lr_scheduler": "one_step"
+
+}

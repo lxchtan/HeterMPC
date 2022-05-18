@@ -15,7 +15,36 @@ Experimental results on the Ubuntu Internet Relay Chat (IRC) channel benchmark s
 
 <div align=center><img src="image/automated_evaluation.png" width=80%></div>
 
+## Python environment
 
-## Update
+The requirements package is in `requirements.txt`.
+
+If you are using nvidia's GPU and CUDA version supports 10.2, you can use the following code to create the desired virtual python environment:
+
+```shell
+conda create -n heterMPC python=3.8
+conda activate heterMPC
+conda install pytorch==1.7.0 torchvision==0.8.0 torchaudio==0.7.0 cudatoolkit=10.2 -c pytorch
+conda install dgl-cuda10.2=0.5.3 -c dglteam 
+pip install -r requirements.txt
+```
+
+> If something goes wrong, you can also refer to the `heterMPC.yaml` file to get the package.
+
+## Instruction
+
+First, unpack data files:
+
+```shell
+cd data
+tar -zxvf ubuntu_data.tar.gz
+```
+
+Please refer to the shell file under the `run_shell` folder.
+
+
+## Update 
+[20220518] Upload model source codes and generation results. Evaluation metrics will be updated later.
+
 Please keep an eye on this repository if you are interested in our work.
 Feel free to contact us ({gujc,chtan}@mail.ustc.edu.cn) or open issues.

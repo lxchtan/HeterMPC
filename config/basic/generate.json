@@ -1,0 +1,12 @@
+{
+  "no_sample": true,
+  "min_length": 1,
+  "max_length": 100,
+  "temperature": 0.7,
+  "top_k": 0,
+  "top_p": 0.9,
+
+  "beam_search": false,
+  "sub_beam_size": 3,
+  "group_num": 2
+}

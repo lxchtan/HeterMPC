@@ -1,0 +1,23 @@
+{
+  "name": "basic_config",
+  "dataloader": "heterbert",
+  "dataloader_class": "BaseDataset",
+  "helper": "heterbert",
+  "model": "heterbert",
+  "model_class": "TXHGenerationModel",
+  "dataroot": "data/all_attribute",
+  "dataset_cache": "data/all_attribute_cache",
+  "model_name_or_path": "bert-base-uncased",
+  "decoder_model_name_or_path": "bert-base-uncased",
+  
+  "history_max_utterances": 1000000,
+  "utterance_max_tokens": 52,
+
+  "gnn_layer_start": 9,
+  "num_gat_layers": 1,
+  "num_gat_heads": 6,
+
+  "optimizer": "AdamW",
+  "lr_scheduler": "one_step"
+
+}
