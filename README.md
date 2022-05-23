@@ -1,5 +1,5 @@
 # HeterMPC: A Heterogeneous Graph Neural Network for Response Generation in Multi-Party Conversations
-This repository contains the source code for the _ACL 2022_ paper [HeterMPC: A Heterogeneous Graph Neural Network for Response Generation in Multi-Party Conversations](https://arxiv.org/pdf/2203.08500.pdf). Jia-Chen Gu, Chao-Hong Tan, Chongyang Tao, Zhen-Hua Ling, Huang Hu, Xiubo Geng, Daxin Jiang. <br>
+This repository contains the source code for the _ACL 2022_ paper [HeterMPC: A Heterogeneous Graph Neural Network for Response Generation in Multi-Party Conversations](https://aclanthology.org/2022.acl-long.349.pdf). Jia-Chen Gu, Chao-Hong Tan, Chongyang Tao, Zhen-Hua Ling, Huang Hu, Xiubo Geng, Daxin Jiang. <br>
 
 
 ## Introduction
