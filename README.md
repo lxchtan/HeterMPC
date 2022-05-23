@@ -1,6 +1,5 @@
 # HeterMPC: A Heterogeneous Graph Neural Network for Response Generation in Multi-Party Conversations
 This repository contains the source code for the _ACL 2022_ paper [HeterMPC: A Heterogeneous Graph Neural Network for Response Generation in Multi-Party Conversations](https://arxiv.org/pdf/2203.08500.pdf). Jia-Chen Gu, Chao-Hong Tan, Chongyang Tao, Zhen-Hua Ling, Huang Hu, Xiubo Geng, Daxin Jiang. <br>
-Hopefully, code will be released at the beginning of May. Thanks for your patience. <br>
 
 
 ## Introduction
@@ -41,6 +40,39 @@ tar -zxvf ubuntu_data.tar.gz
 ```
 
 Please refer to the shell file under the `run_shell` folder.
+
+
+## Cite
+If you think our work is helpful or use the code, please cite the following paper:
+**"HeterMPC: A Heterogeneous Graph Neural Network for Response Generation in Multi-Party Conversations"**
+Jia-Chen Gu, Chao-Hong Tan, Chongyang Tao, Zhen-Hua Ling, Huang Hu, Xiubo Geng, Daxin Jiang. _ACL (2022)_
+
+```
+@inproceedings{DBLP:conf/acl/GuTTLHGJ22,
+  author    = {Jia{-}Chen Gu and
+               Chao{-}Hong Tan and
+               Chongyang Tao and
+               Zhen{-}Hua Ling and
+               Huang Hu and
+               Xiubo Geng and
+               Daxin Jiang},
+  editor    = {Smaranda Muresan and
+               Preslav Nakov and
+               Aline Villavicencio},
+  title     = {HeterMPC: {A} Heterogeneous Graph Neural Network for Response Generation
+               in Multi-Party Conversations},
+  booktitle = {Proceedings of the 60th Annual Meeting of the Association for Computational
+               Linguistics (Volume 1: Long Papers), {ACL} 2022, Dublin, Ireland,
+               May 22-27, 2022},
+  pages     = {5086--5097},
+  publisher = {Association for Computational Linguistics},
+  year      = {2022},
+  url       = {https://aclanthology.org/2022.acl-long.349},
+  timestamp = {Wed, 18 May 2022 15:21:43 +0200},
+  biburl    = {https://dblp.org/rec/conf/acl/GuTTLHGJ22.bib},
+  bibsource = {dblp computer science bibliography, https://dblp.org}
+}
+```
 
 
 ## Update 
