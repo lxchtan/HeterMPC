@@ -32,6 +32,12 @@ pip install -r requirements.txt
 
 ## Instruction
 
+If you would like to use the evaluation tools, please clone the code with submodules.
+
+```shell
+git clone https://github.com/lxchtan/HeterMPC --recurse-submodules
+```
+
 First, unpack data files:
 
 ```shell
@@ -41,8 +47,20 @@ tar -zxvf ubuntu_data.tar.gz
 
 Please refer to the shell file under the `run_shell` folder.
 
+## Evaluation
+
+We use the [coco-caption](https://github.com/tylin/coco-caption) to evaluate the generation results.
+
+First, prepare the running environment. Please refer to `analyse/coco-caption`.
+
+Then, you can run the script, `analyse/cal_coco.sh` to get the evaluation results.
+
+```bash
+bash analyse/cal_coco.sh
+```
 
 ## Cite
+
 If you think our work is helpful or use the code, please cite the following paper:
 **"HeterMPC: A Heterogeneous Graph Neural Network for Response Generation in Multi-Party Conversations"**
 Jia-Chen Gu, Chao-Hong Tan, Chongyang Tao, Zhen-Hua Ling, Huang Hu, Xiubo Geng, Daxin Jiang. _ACL (2022)_
@@ -76,7 +94,9 @@ Jia-Chen Gu, Chao-Hong Tan, Chongyang Tao, Zhen-Hua Ling, Huang Hu, Xiubo Geng, 
 
 
 ## Update 
-[20220518] Upload model source codes and generation results. Evaluation metrics will be updated later.
+[20220714] Evaluation metrics are updated.
+
+[20220518] Upload model source codes and generation results. 
 
 Please keep an eye on this repository if you are interested in our work.
 Feel free to contact us ({gujc,chtan}@mail.ustc.edu.cn) or open issues.

@@ -1,0 +1,3 @@
+[submodule "analyse/coco-caption"]
+	path = analyse/coco-caption
+	url = ../coco-caption.git
