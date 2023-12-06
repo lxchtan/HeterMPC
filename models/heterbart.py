@@ -16,13 +16,14 @@ from transformers.modeling_bart import (
     Seq2SeqLMOutput
 )
 
-from dataloaders import MAX_UTTERANCE_NUM, MAX_SPEAKER_NUM
+# from dataloaders import MAX_UTTERANCE_NUM, MAX_SPEAKER_NUM
 from models.HGT import bart_modify
 
 class TXHModel(BartModel):
   def __init__(self, config, args):
     super(BartModel, self).__init__(config)
 
+    self.MAX_UTTERANCE_NUM = args.MAX_UTTERANCE_NUM
     padding_idx, vocab_size = config.pad_token_id, config.vocab_size
     self.shared = nn.Embedding(vocab_size, config.d_model, padding_idx)
 
@@ -100,6 +101,7 @@ class TXHModel(BartModel):
 
     # deal with NAN for invaild example. 
     # encoder_outputs[0][encoder_outputs[0].isnan()] = 0.0
+    MAX_UTTERANCE_NUM = self.MAX_UTTERANCE_NUM
     encoder_output_embeddings = encoder_outputs[0].reshape(-1, MAX_UTTERANCE_NUM*encoder_outputs[0].shape[1], encoder_outputs[0].shape[2])
     
     ans_total = torch.zeros(encoder_outputs[0].shape[0], dtype=decoder_ans_idxs.dtype, device=decoder_ans_idxs.device).view(-1, MAX_UTTERANCE_NUM)
@@ -139,6 +141,7 @@ class TXHGenerationModel(BartForConditionalGeneration):
 
   def __init__(self, config, args):
     super(BartForConditionalGeneration, self).__init__(config)
+    self.MAX_UTTERANCE_NUM = args.MAX_UTTERANCE_NUM
     base_model = TXHModel(config, args)
     self.model = base_model
     self.register_buffer("final_logits_bias", torch.zeros((1, self.model.shared.num_embeddings)))
@@ -274,6 +277,7 @@ class TXHGenerationModel(BartForConditionalGeneration):
     if "decoder_input_ids" in model_kwargs:
         return model_kwargs["decoder_input_ids"]
 
+    MAX_UTTERANCE_NUM = self.MAX_UTTERANCE_NUM
     decoder_start_token_id = self._get_decoder_start_token_id(decoder_start_token_id, bos_token_id)
     decoder_input_ids = (
         torch.ones((input_ids.shape[0]//MAX_UTTERANCE_NUM, 1), dtype=input_ids.dtype, device=input_ids.device)

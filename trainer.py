@@ -49,6 +49,8 @@ def main():
   parser.add_argument("--mc_coef", type=float, default=1.0, help="Multiple-choice loss coefficient")
   parser.add_argument("--max_norm", type=float, default=1.0, help="Clipping gradient norm")
   parser.add_argument("--n_epochs", type=int, default=3, help="Number of training epochs")
+  parser.add_argument("--MAX_UTTERANCE_NUM", type=int, default=7, help="MAX_UTTERANCE_NUM")
+  parser.add_argument("--MAX_SPEAKER_NUM", type=int, default=8, help="MAX_SPEAKER_NUM")
   parser.add_argument("--eval_before_start", action='store_true',
                       help="If true start with a first evaluation before training")
   parser.add_argument("--save_every_iters", type=int, default=None, help="Number of training iters to save")

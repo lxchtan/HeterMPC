@@ -16,7 +16,7 @@ from collections import defaultdict
 
 import dgl
 
-from dataloaders import MAX_SPEAKER_NUM, MAX_UTTERANCE_NUM
+# from dataloaders import MAX_SPEAKER_NUM, MAX_UTTERANCE_NUM
 
 logger = logging.getLogger(__name__)
 
@@ -85,6 +85,8 @@ class BaseDataset(torch.utils.data.Dataset):
     self.tokenizer = tokenizer
     self.split_type = split_type
 
+    self.MAX_SPEAKER_NUM = args.MAX_SPEAKER_NUM
+    self.MAX_UTTERANCE_NUM = args.MAX_UTTERANCE_NUM
     self.SPECIAL_TOKENS_VALUES = SPECIAL_TOKENS_VALUES
     self.bos = self.tokenizer.convert_tokens_to_ids("<s>")
     self.eos = self.tokenizer.convert_tokens_to_ids("</s>")
@@ -116,8 +118,10 @@ class BaseDataset(torch.utils.data.Dataset):
       dialog["answer_from"] = relation['from_idx']
       
       # history utterance
-      edges = tuple(map(lambda x:x.squeeze(1), torch.tensor(relation['relation_at']).split(1, dim=-1)))
-      inv_edges = deepcopy((edges[1], edges[0]))
+      # edges = tuple(map(lambda x:x.squeeze(1), torch.tensor(relation['relation_at']).split(1, dim=-1)))
+      # inv_edges = deepcopy((edges[1], edges[0]))
+      edges = relation['relation_at']
+      inv_edges = [[e[1], e[0]] for e in edges]
       
       # history speaker
       speaker_to_utterance = []
@@ -141,8 +145,8 @@ class BaseDataset(torch.utils.data.Dataset):
         ('speaker', 'get_from', 'utterance'): utterance_addr_speaker_inv,
       }
       graph = dgl.heterograph(data_dict, num_nodes_dict={
-        'utterance': MAX_UTTERANCE_NUM,
-        'speaker': MAX_SPEAKER_NUM
+        'utterance': self.MAX_UTTERANCE_NUM,
+        'speaker': self.MAX_SPEAKER_NUM
       })
       # response 
       graph.add_edges(relation['from_idx'], relation['index'], etype='to')
@@ -227,7 +231,7 @@ class BaseDataset(torch.utils.data.Dataset):
     input_datas['segment_id'] = torch.cat(input_segment_id, dim=0)
     input_datas['encoding_mask'] = torch.cat(input_encoding_mask, dim=0)
 
-    addition_nums = MAX_UTTERANCE_NUM - response_id - 1
+    addition_nums = self.MAX_UTTERANCE_NUM - response_id - 1
     if addition_nums != 0:
       input_datas['encoding'] = torch.cat([input_datas['encoding'], torch.zeros((addition_nums, self.args.utterance_max_tokens), dtype=torch.long).fill_(self.pad)], dim=0)
       input_datas['segment_id'] = torch.cat([input_datas['segment_id'], torch.zeros((addition_nums, self.args.utterance_max_tokens), dtype=torch.long)], dim=0)

@@ -1,27 +1,19 @@
 import torch
-from torch.utils.data import DataLoader, RandomSampler, SequentialSampler
-from torch.utils.data.distributed import DistributedSampler
-from ignite.contrib.engines import common
-from ignite.engine import Engine, Events, create_supervised_evaluator
-from ignite.handlers import Checkpoint, DiskSaver
-from ignite.metrics import Accuracy, Loss, MetricsLambda, RunningAverage
-from ignite.contrib.handlers import ProgressBar, PiecewiseLinear
-from ignite.utils import setup_logger
+from torch.utils.data import DataLoader
+from ignite.handlers import Checkpoint
 
-from transformers import AdamW, AutoTokenizer, AutoConfig
+from transformers import AutoTokenizer, AutoConfig
 
 import logging
 from pprint import pformat
 import argparse
 import os
 import json
-import math
 from pathlib import Path
-from functools import partial
 
 from utils.switch import get_modules
-from utils.auxiliary import set_seed, average_distributed_scalar
-from utils.argument import verify_args, update_additional_params, set_default_params, set_default_dataset_params
+from utils.auxiliary import set_seed
+from utils.argument import verify_args
 
 from tqdm import tqdm
 
@@ -37,6 +29,8 @@ def main():
   parser.add_argument("--dataset_path", type=str, default="data", help="Path of the dataset.")
   parser.add_argument("--dataset_cache", type=str, default='data/dataset_cache', help="Path of the dataset cache")
   parser.add_argument("--model_checkpoint", type=str, required=True, help="Path, url or short name of the model")
+  parser.add_argument("--MAX_UTTERANCE_NUM", type=int, default=5, help="MAX_UTTERANCE_NUM")
+  parser.add_argument("--MAX_SPEAKER_NUM", type=int, default=5, help="MAX_SPEAKER_NUM")
   parser.add_argument("--result_file", type=str, required=True, help="Path generate result")
   parser.add_argument("--device", type=str, default="cuda" if torch.cuda.is_available() else "cpu",
                       help="Device (cuda or cpu)")
@@ -116,9 +110,9 @@ def main():
   Checkpoint.load_objects(to_load={"model": model}, checkpoint=checkpoint)
   
   dataset_class = getattr(dataloader, "testDataset") # TODO: suitable
-  test_dataset = dataset_class(args, tokenizer, 'test')
+  test_dataset = dataset_class(args=args, tokenizer=tokenizer, split_type='test', line_batch_list=[])
   test_loader = DataLoader(test_dataset, batch_size=1, shuffle=False, collate_fn=test_dataset.collate_fn) #, collate_fn=test_dataset.collate_fn
-  
+  print("test dataset is ok ...")
 
   if args.debug:
     setattr(dataset_class, "__len__", lambda _: 20)

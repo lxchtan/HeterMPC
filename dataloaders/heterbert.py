@@ -36,7 +36,7 @@ class DatasetWalker(object):
       "relation_at": [[1, 0], [2, 1], [3, 2], [4, 2], [5, 4]],
       "ctx_spk": [1, 2, 1, 2, 2, 1],
       "ctx_adr": [-1, 1, 2, 1, 1, 2],
-      "answer": "and untar your default config on all your client machines .",
+      "answer": "sand untar your default config on all your client machine .",
       "ans_idx": 2,
       "ans_spk": 2,
       "ans_adr": 1
@@ -171,7 +171,8 @@ class BaseDataset(torch.utils.data.Dataset):
 
       # apply history threshold at an utterance-level (a large value can be used to nullify its effect)
       truncated_history = history[-self.args.history_max_utterances:]
-
+      # print("truncated_history_len:", len(truncated_history))
+      # print("truncated_history:",truncated_history)
       # perform token-level truncation of history from the left
       truncated_history = truncate_utterance(truncated_history, self.args.utterance_max_tokens - 2)
 
@@ -190,7 +191,7 @@ class BaseDataset(torch.utils.data.Dataset):
     input_segment_id = []
     input_encoding_mask = []
     # Cut Response
-    response = response[:self.args.utterance_max_tokens-2]
+    response = response[:self.args.utterance_max_tokens-2]  #-2是为了下面在最前和最后拼接self.bos和self.eos
 
     for i, h in enumerate(history):
       sequence = [self.bos] + h + [self.eos]
