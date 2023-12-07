@@ -13,3 +13,19 @@ Bleu_2: 4.551
 Bleu_1: 12.610
 ROUGE_L: 11.196
 METEOR: 4.792
+
+results/Paper/FHeterBART.txt
+Bleu_4: 1.629
+Bleu_3: 2.642
+Bleu_2: 5.122
+Bleu_1: 12.725
+ROUGE_L: 11.738
+METEOR: 5.314
+
+results/Paper/Ubuntu_l5_EM_FHeterBART.txt
+Bleu_4: 1.914
+Bleu_3: 2.648
+Bleu_2: 4.580
+Bleu_1: 11.818
+ROUGE_L: 10.742
+METEOR: 4.895
