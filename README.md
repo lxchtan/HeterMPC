@@ -5,7 +5,7 @@ This repository contains the source codes for the following papers:
   Jia-Chen Gu<sup>\*</sup>, Chao-Hong Tan<sup>\*</sup>, Caiyuan Chu, Zhen-Hua Ling, Chongyang Tao, Quan Liu, Cong Liu <br>
   _EMNLP 2023_ <br>
   
-- [HeterMPC: A Heterogeneous Graph Neural Network for Response Generation in Multi-Party Conversations](https://aclanthology.org/2021.acl-long.285.pdf). <br>
+- [HeterMPC: A Heterogeneous Graph Neural Network for Response Generation in Multi-Party Conversations](https://arxiv.org/pdf/2203.08500.pdf). <br>
   Jia-Chen Gu<sup>\*</sup>, Chao-Hong Tan<sup>\*</sup>, Chongyang Tao, Zhen-Hua Ling, Huang Hu, Xiubo Geng, Daxin Jiang. <br>
   _ACL 2022_ <br>
 
